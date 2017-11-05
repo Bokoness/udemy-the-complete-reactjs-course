@@ -1,0 +1,12 @@
+babel cli - babel command line
+    installation: npm i -g babel-cli
+
+installing babel for es6 es7
+    - yarn add babel-preset-env
+        - the env is the library that works with es5, es6, es7
+
+installing babel for react:
+    - yarn add babel-preset-react
+    
+commands: 
+    babel --help > help

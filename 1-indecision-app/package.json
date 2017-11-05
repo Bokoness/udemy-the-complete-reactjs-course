@@ -1,0 +1,11 @@
+{
+  "name": "1-indecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "bokoness",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1"
+  }
+}

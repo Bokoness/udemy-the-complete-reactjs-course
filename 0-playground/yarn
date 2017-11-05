@@ -1,0 +1,10 @@
+initialize project with yarn:
+    - go to folder then type > yarn init
+
+installing with yarn:
+    - example: yarn add babel-preset-react babel-preset-env
+    - as we saw in example we can chain multiple apps with space between them
+
+install all depedencies in package.json
+    - yarn install
+    

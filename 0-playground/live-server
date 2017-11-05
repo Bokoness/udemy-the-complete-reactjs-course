@@ -1,0 +1,9 @@
+basic server with auto refresh
+
+install yarn global add live-server // with yarn
+or
+npm i -g live-server
+
+then to build the server navigate to wanted directory then type:
+ - live-server {directory name}, for example:
+ - live-server public
