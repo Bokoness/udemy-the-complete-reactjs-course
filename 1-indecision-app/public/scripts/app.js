@@ -3,84 +3,90 @@
 console.log('App.js is running!');
 
 var app = {
-    title: 'Indecision App',
-    subtitle: 'hey',
-    options: ['One', 'Two']
+  title: 'Indecision App',
+  subtitle: 'hey',
+  options: []
 };
 
-//JSX - Javascript XML
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options.length > 0 ? 'here are your options' : 'No Options'
-    )
-);
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
 
-/* A demo that shoes how react rendering works 
-    - everytime the state is changed react is rerender elements
-    - just like we are doing here with renderCounterApp()
-*/
+  var option = e.target.elements.option.value;
 
-var count = 0;
-var addOne = function addOne() {
-    count++;
-    renderCounterApp();
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+    render();
+  }
 };
 
-var minusOne = function minusOne() {
-    count--;
-    renderCounterApp();
+var onRemoveAll = function onRemoveAll() {
+  app.options = [];
+  render();
 };
 
-var reset = function reset() {
-    count = 0;
-    renderCounterApp();
+var onMakeDecision = function onMakeDecision() {
+  //generating a random number between 0 to options array length;
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
 };
 
 var appRoot = document.getElementById('app');
 
-var renderCounterApp = function renderCounterApp() {
-    var templateTwo = React.createElement(
-        'div',
+var render = function render() {
+  var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      'p',
+      null,
+      app.subtitle
+    ),
+    React.createElement(
+      'p',
+      null,
+      app.options.length > 0 ? 'Here are your options' : 'No options'
+    ),
+    React.createElement(
+      'button',
+      { disabled: app.options.length <= 0, onClick: onMakeDecision },
+      'What should I do?'
+    ),
+    React.createElement(
+      'button',
+      { onClick: onRemoveAll },
+      'Remove All'
+    ),
+    React.createElement(
+      'ol',
+      null,
+      app.options.map(function (option, idx) {
+        return React.createElement(
+          'li',
+          { key: idx },
+          option
+        );
+      })
+    ),
+    React.createElement(
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
         null,
-        React.createElement(
-            'h1',
-            null,
-            'Count: ',
-            count
-        ),
-        React.createElement(
-            'button',
-            { onClick: addOne },
-            '+1'
-        ),
-        React.createElement(
-            'button',
-            { onClick: minusOne },
-            '-1'
-        ),
-        React.createElement(
-            'button',
-            { onClick: reset },
-            'reset'
-        )
-    );
+        'Add Option'
+      )
+    )
+  );
 
-    //takes 2 args, 1: the element to render, 2 the container element in html file
-    ReactDOM.render(templateTwo, appRoot);
+  ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+render();
