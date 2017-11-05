@@ -29,7 +29,58 @@ var template = React.createElement(
     )
 );
 
+/* A demo that shoes how react rendering works 
+    - everytime the state is changed react is rerender elements
+    - just like we are doing here with renderCounterApp()
+*/
+
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    renderCounterApp();
+};
+
+var minusOne = function minusOne() {
+    count--;
+    renderCounterApp();
+};
+
+var reset = function reset() {
+    count = 0;
+    renderCounterApp();
+};
+
 var appRoot = document.getElementById('app');
 
-//takes 2 args, 1: the element to render, 2 the container element in html file
-ReactDOM.render(template, appRoot);
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'reset'
+        )
+    );
+
+    //takes 2 args, 1: the element to render, 2 the container element in html file
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
