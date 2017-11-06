@@ -10,3 +10,7 @@ installing babel for react:
     
 commands: 
     babel --help > help
+
+compling with babel: 
+    - babel <input file> --out-file=<output file> --presets=<wanted presets> --watch(only if we want babel to watch), complete example: 
+    - babel states.js --out-file=app.js --presets=env,react --watch
