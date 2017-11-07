@@ -11,6 +11,8 @@ installing babel for react:
 commands: 
     babel --help > help
 
-compling with babel: 
-    - babel <input file> --out-file=<output file> --presets=<wanted presets> --watch(only if we want babel to watch), complete example: 
-    - babel states.js --out-file=app.js --presets=env,react --watch
+compile with babel:
+    - in terminal, in the project folder:
+        - babel (name of input folder) --out-file=(name of output file) --presets=(wanted compilers seperated by coma), for example:
+        - babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+        - watch is for setting watch compiler
