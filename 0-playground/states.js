@@ -54,7 +54,7 @@ class Counter extends React.Component {
         this.reset = this.reset.bind(this);
 
         this.state = {
-            count: 0
+            count: props.count
         }
     }
     //the prefred way to setState - pass a function to setState
@@ -90,5 +90,9 @@ class Counter extends React.Component {
         )
     }
 }
-
-ReactDOM.render(<Counter />, document.getElementById('app'));
+//default props - if Counter didn't recieve any count props - make count 0
+Counter.defaultProps = {
+    count: 0
+}
+//send Counter - count props of -10, so it wont use its default 0 props. 
+ReactDOM.render(<Counter  count={-10}/>, document.getElementById('app'));
