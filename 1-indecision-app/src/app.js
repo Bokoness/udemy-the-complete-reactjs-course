@@ -12,8 +12,27 @@ class IndecisionApp extends React.Component {
         }
     }
 
+    componentDidMount() {
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+            console.log(options);
+    
+            options && this.setState({options});
+        } catch (e) {
+            //Do nothing at all
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options' ,json);
+        };
+    }
+
     handleDeleteOptions () {
-        this.setState(() => ({options: []}));
+        this.setState(() => ({ options: []}));
     }
 
     handleDeleteOption (optionToRemove) {
@@ -87,6 +106,7 @@ const Action = (props) => (
 const Options = (props) => (
     <div>
         <button onClick={props.handleDeleteOptions}>Remove All</button>
+        {props.options.length === 0 && <p>Please add and option to get started</p>}
         {
             props.options.map((option) => (
                 <Option 
@@ -127,7 +147,9 @@ class AddOption extends React.Component {
 
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
-        e.target.elements.option.value = '';
+
+        if(!error)
+            e.target.elements.option.value = '';
         
         this.setState(() => ({error: error}));
 
