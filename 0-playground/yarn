@@ -7,4 +7,12 @@ installing with yarn:
 
 install all depedencies in package.json
     - yarn install
+
+install globaly
+    - yarn global install babel-cli
+
+uninstall 
+    - yarn remove babel-cli
+    - uninstall globaly
+        - yarn global remove babel-cli
     
