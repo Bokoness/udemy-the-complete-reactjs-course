@@ -79,10 +79,6 @@ class IndecisionApp extends React.Component {
     }
 }
 
-IndecisionApp.defaultApp = {
-    options: []
-}
-
 const Header = (props) => (
     <div>
         <h1>{props.title}</h1>

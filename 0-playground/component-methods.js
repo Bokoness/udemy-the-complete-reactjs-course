@@ -15,13 +15,12 @@ class A extends React.Component {
     //fires after state is updated
     componentDidUpate(prevProps, prevState) {
         console.log('ComponentDudUpdate', prevProps, prevState);
-    }
+    };
 
     //fires before component is deleted
     componentWillUnmout() {
         console.log('ComponentWillUnmount');
-    }
-
+    };
 
 
     render() {
@@ -29,4 +28,9 @@ class A extends React.Component {
             <div>{this.state.count}</div>
         )
     }
+
+    // //default props - if Counter didn't recieve any count props - make count 0
+    // A.defaultProps = {
+    //     count: 0
+    // }
 }
