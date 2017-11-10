@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp';
+ 
+ReactDOM.render(<IndecisionApp/>, document.getElementById('app'));
 
 
-const template = React.createElement('p', {}, 'testing');
-
-const template2 = <p>Testing</p>;
-ReactDOM.render(template2, document.getElementById('app'));
