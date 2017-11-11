@@ -12,11 +12,25 @@ module.exports = {
     },
     module: {
         rules: [{
+            //loader rule: the package we want to use
             loader: 'babel-loader',
             //run babel on all .js files - using regex
             test: /\.js$/,
             //exluding the js files in node_modules
             exclude: /node_modules/
+        }, {
+        //setting up webpack to work with scss
+            test: /\.scss$/,
+            //use: when we want to use more then one loader
+            use: [
+                'style-loader',
+                'css-loader',
+                'sass-loader' // a package that compile scss to css
+            /*summary: when babel see .scss file:
+                - it will use sass-loader to compile it to css file
+                - it will use style-loader and css-loader packages to load css file to the dom    
+            */
+            ]
         }]
     },
     /* webpack devtool - source map:
