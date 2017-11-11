@@ -19,8 +19,8 @@ module.exports = {
             //exluding the js files in node_modules
             exclude: /node_modules/
         }, {
-        //setting up webpack to work with scss
-            test: /\.scss$/,
+        //setting up webpack to work with css or scss files
+            test: /\.s?css$/,
             //use: when we want to use more then one loader
             use: [
                 'style-loader',
