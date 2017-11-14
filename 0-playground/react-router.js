@@ -13,11 +13,14 @@ import {BrowserRouter, Route, Switch, Link, NavLink} from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
-const ExpenseDashboardPage = () => (
-    <div>
-        This is from my dashboard component
-    </div>
-)
+const ExpenseDashboardPage = (props) => {
+    console.log(props);
+    return (
+        <div>
+            This is from my dashboard component
+        </div>
+    )
+}
 const AddExpensePage = () => (
     <div>
         Add expense component
