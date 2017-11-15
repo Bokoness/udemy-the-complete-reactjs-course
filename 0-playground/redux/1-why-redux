@@ -1,0 +1,8 @@
+Why redux?
+    - for complex apps that dont have a single component that stores the state of the app
+        - just like when we are using react-router, and we have multiple parents for the app
+
+    - components aren't reusable
+        - to reuse components we need to chain props trough components that dont need to use those props, only pass them on, which is not proffesional
+        - the chainning is complex and hard to follow
+
