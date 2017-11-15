@@ -1,3 +1,5 @@
+// TO TEST THIS FILE JUST COPY IT TO APP.JS AND COMMENT THE REST
+
 /*
     react-router
         - works like anchor tags <a>
@@ -13,26 +15,39 @@ import {BrowserRouter, Route, Switch, Link, NavLink} from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
-const ExpenseDashboardPage = (props) => {
-    console.log(props);
-    return (
-        <div>
-            This is from my dashboard component
-        </div>
-    )
-}
-const AddExpensePage = () => (
+/*
+    react router props:
+        - react router renders an instance of the component to the wanted adress
+        - more then that - react router will pass special props to those instance components
+        - the props:
+            - history: object that have properties that can redirect user to other adresses via javascript
+                - such as goback, gofoward etc..
+            - location:
+                - search: contain all url variables (query strings)
+                - hash: contain all hash value in adress
+*/
+
+const Home = () => (
+    <div><h1>Home!</h1></div>
+)
+
+const Protfolio = () => (
     <div>
-        Add expense component
+        <h1>Protfolio</h1>
+        <Link to="/protfolio/:1">Protfolio 1 </Link>
+        <Link to="/protfolio/:2">Protfolio 2 </Link>
+        <Link to="/protfolio/:3">Protfolio 3 </Link>
     </div>
 )
 
-const EditExpensePage = () => (
-    <div>Edit Expense Page </div>
+const ProtfolioIndividual = (props) => (
+    <div>
+        <h3>ProtFolio with id of: <strong>{props.match.params.id}</strong></h3>
+    </div>
 )
 
-const HelpPage = () => (
-    <div>Help Page</div>
+const Contact = () => (
+    <div>Contact Me </div>
 )
 
 /*
@@ -60,11 +75,10 @@ const NotFoundPage = () => (
 
 const Header = () => (
     <header>
-        <h1>Expensify</h1>
-        <NavLink to="/" activeClassName="is-active" exact={true}> Dashboard</NavLink>
-        <NavLink to="/create" activeClassName="is-active"> Create Expense</NavLink>
-        <NavLink to="/edit" activeClassName="is-active"> Edit Expense</NavLink>
-        <NavLink to="/help" activeClassName="is-active"> Help</NavLink>
+        <h1>Protfolio</h1>
+        <NavLink to="/" activeClassName="is-active" exact={true}> Home</NavLink>
+        <NavLink to="/protfolio" activeClassName="is-active"> Protfolio</NavLink>
+        <NavLink to="/contact" activeClassName="is-active"> Contact</NavLink>
     </header>
 )
 /*
@@ -86,10 +100,10 @@ const routes = (
         <div>
             <Header />
             <Switch>
-                <Route path="/" component={ExpenseDashboardPage} exact={true}/>
-                <Route path="/create" component={AddExpensePage}/>
-                <Route path="/edit" component={EditExpensePage}/>
-                <Route path="/help" component={HelpPage}/>
+                <Route path="/" component={Home} exact={true}/>
+                <Route path="/protfolio" component={Protfolio} exact={true}/>
+                <Route path="/protfolio/:id" component={ProtfolioIndividual}/> // id will be validd data via props.match.params.id - special react-router tool.
+                <Route path="/contact" component={Contact}/>
                 <Route component={NotFoundPage}/>
             </Switch>
         </div>
