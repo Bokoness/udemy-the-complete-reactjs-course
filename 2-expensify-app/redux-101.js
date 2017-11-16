@@ -8,13 +8,19 @@ import {createStore} from 'redux';
 const store = createStore((state = {count: 0}, action) => {
     switch(action.type) {
         case 'INCREMENT':
+            const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1;
             return {
-                count: state.count + 1
+                count: state.count + incrementBy
             };
         case 'DECREMENT':
+            const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
             return {
-                count: state.count - 1
+                count: state.count - decrementBy
             };
+        case 'SET': 
+            return {
+                count: action.count
+            }
         case 'RESET':
             return {
                 count: 0
@@ -24,7 +30,12 @@ const store = createStore((state = {count: 0}, action) => {
     }
 });
 
-console.log(store.getState());
+//store.subscrite(): watching the store and calling the arg function everytime
+//there is a change in store
+store.subscribe(() => {
+    //.getState - return the current state
+    console.log(store.getState());
+})
 
 /*
     Actions:
@@ -35,10 +46,14 @@ console.log(store.getState());
 
     store.dispatch
         - send the action to the store
+        - args:
+            1st: type - a string that defines the action type. cannot be undefined
+            2nd: dynamic information we pass to store (only if we want)
 */
 
 store.dispatch({
-    type: 'INCREMENT'
+    type: 'INCREMENT',
+    incrementBy: 5 //increment by 5
 });
 
 store.dispatch({
@@ -49,7 +64,12 @@ store.dispatch({
     type: 'DECREMENT'
 });
 
+store.dispatch({
+    type: 'DECREMENT',
+    decrementBy: 10 //decrement by 10
+});
 
-
-//.getState - return the current state
-console.log(store.getState());
+store.dispatch({
+    type: 'SET',
+    count: 101 //set count to 101
+});
