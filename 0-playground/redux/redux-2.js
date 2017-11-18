@@ -1,3 +1,5 @@
+//Same exmaple as redux-1, only without comments, the reducer is a function that passed to the createStore()
+
 import {createStore} from 'redux';
 
 const incrementCount_without_destructuring = (payload = {}) => {
