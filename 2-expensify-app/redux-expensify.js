@@ -1,5 +1,6 @@
 import {createStore, combineReducers} from 'redux';
 import uuid from 'uuid'; //creating a qunique id
+import { date } from '../../../AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/assert-plus';
 
 /**********************
 ** Action generators **
@@ -30,6 +31,25 @@ const setTextFilter = (text = '') => ({
     type: 'SET_TEXT_FILTER',
     text
 });
+
+const sortByAmount = () => ({
+    type: 'SORT_BY_AMOUNT'
+})
+
+const sortByDate = () =>({
+    type: 'SORT_BY_DATE'
+})
+
+const setStartDate = (startDate = undefined) => ({
+    type: 'SET_START_DATE',
+    startDate
+});
+
+const setEndDate = (endDate = undefined) => ({
+    type: 'SET_END_DATE',
+    endDate
+});
+
 
 /*************
 ** Reducers **
@@ -74,7 +94,27 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 text: action.text
+            };
+        case 'SORT_BY_AMOUNT':
+            return {
+                ...state,
+                sortBy: 'amount'
+            };
+        case 'SORT_BY_DATE':
+            return {
+                ...state,
+                sortBy: 'date'
             }
+        case 'SET_START_DATE':
+            return {
+                ...state,
+                startDate: action.startDate
+            };
+        case 'SET_END_DATE':
+            return {
+                ...state,
+                endDate: action.endDate
+            };
         default:
             return state;
     }
@@ -94,6 +134,7 @@ const store = createStore(
         filters: filtersReducer
     })
 );
+
 store.subscribe(() => {
     console.log(store.getState());
 })
@@ -104,12 +145,31 @@ store.subscribe(() => {
 ****************************/
 //when saving store.dispatch into a variable, it saves the data of the dispatch
 //in our case we can use it to fetch the id of the expense
+console.log('addExpense');
 const expenseOne = store.dispatch(addExpense({description: 'Rent', amount: 100}));
 const expenseTwo = store.dispatch(addExpense({description: 'Coffe', amount: 100}));
+
+console.log('removeExpese, editExpense');
 store.dispatch(removeExpense({id: expenseOne.expense.id}));
 store.dispatch(editExpense(expenseTwo.expense.id, {amount: 500}));
+
+console.log('setTextFilter');
 store.dispatch(setTextFilter('rent'));
 store.dispatch(setTextFilter());
+
+console.log('sortBy');
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
+
+console.log('setStartDate');
+store.dispatch(setStartDate(125));
+store.dispatch(setStartDate());
+store.dispatch(setStartDate(1250));
+
+
+
+
+
 
 const demoState = {
     expenses: [{
