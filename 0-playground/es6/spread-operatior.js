@@ -27,6 +27,7 @@ console.log('Ness', ...arr, 'Geffen');
  console.log({...user});
 
  //adding data to the end
+    //when adding the same properties to the end of the object, it will override the object props
  console.log({
      ...user,
      location: 'israel',
