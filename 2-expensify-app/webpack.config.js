@@ -23,6 +23,6 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
-    historyApiFallback: true //the react-route will be incharge of routing and not devserver
+    historyApiFallback: true//the react-route will be incharge of routing and not devserver
   }
 };
