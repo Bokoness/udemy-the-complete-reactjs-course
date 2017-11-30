@@ -7,12 +7,13 @@ installing babel for es6 es7
 
 installing babel for react:
     - yarn add babel-preset-react
-    
-commands: 
+
+commands:
     babel --help > help
 
 compile with babel:
     - in terminal, in the project folder:
         - babel (name of input folder) --out-file=(name of output file) --presets=(wanted compilers seperated by coma), for example:
         - babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+            - babel src/app.js --out-file=public/bundle.js --presets=env,react --watch
         - watch is for setting watch compiler
