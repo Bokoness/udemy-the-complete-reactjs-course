@@ -15,7 +15,7 @@ module.exports = {
             //loader rule: the package we want to use
             loader: 'babel-loader',
             //run babel on all .js files - using regex
-            test: /\.js$/,
+            test: /\.js$/,  //regex - the $ means the it ends with js
             //exluding the js files in node_modules
             exclude: /node_modules/
         }, {

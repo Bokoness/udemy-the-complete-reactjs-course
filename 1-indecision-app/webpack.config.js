@@ -1,3 +1,5 @@
+//WP version 3.1.0
+
 const path = require('path');
 
 module.exports = {
@@ -5,7 +7,7 @@ module.exports = {
     entry: './src/app.js',
     //output file (all bundle files in one)
     output: {
-        //the parth to output file
+        //the path to output file, the path have to be ABSOLUTE
         path: path.join(__dirname, 'public'),
         //output file name
         filename: 'bundle.js'
